@@ -5,22 +5,19 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b1d816e0-bab9-40c2-a3dc-66e8d8576138" >
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="08d446e0-ec04-435a-bf93-b77147f02279" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<flow name="khatpocFlow" doc:id="45509489-1b4a-4231-b0bf-d70c439415c8" >
-		<http:listener doc:name="Listener" doc:id="565ca966-d23c-4527-98d1-b36b5aa3c5cb" config-ref="HTTP_Listener_config" path="/test"/>
-		<set-payload value="#[[1,2,3]]" doc:name="Set Payload" doc:id="84a1f864-7900-484b-b00e-271ff6f1cb97" />
-		<logger level="INFO" doc:name="Logger" doc:id="2a6d4de4-e2dc-4509-8195-c6938e683ff2" message="#[payload]"/>
-		<logger level="INFO" doc:name="Logger" doc:id="2b5905a4-20da-4972-a280-7d36a1df7082" />
-		<ee:transform doc:name="Transform Message" doc:id="ca507711-b02d-4d0f-8a03-79c2b34afb3e" >
+	<flow name="testinggitprojectFlow" doc:id="0a4009ce-c1ac-45c8-914e-1a3ef98bd634" >
+		<http:listener doc:name="Listener" doc:id="7616af5f-9e2e-4ba3-83a0-757d3ce7f7a3" config-ref="HTTP_Listener_config" path="/test"/>
+		<ee:transform doc:name="Transform Message" doc:id="912cc3d4-a7c5-4547-9e8a-6153892ca761" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
-output application/java
+output application/json
 ---
-{
-}]]></ee:set-payload>
+[1,2,3,4]]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="6eb20dfc-226d-4843-bac1-38bfad2fe24b" message="#[payload]"/>
 	</flow>
 </mule>
